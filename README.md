@@ -6,4 +6,4 @@ Built using:
   - Arduino Uno
   - Servo Motor
   - Light Dependent Resistors
-  - 5V 60mA Soalr Panel
+  - 5V 60mA Solar Panel
