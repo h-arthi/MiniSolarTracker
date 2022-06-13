@@ -16,8 +16,8 @@ int error;
 int derivative;
 //PID Variables
 int lastError = 0; //setting the last error to 0
-int Kd = 5;//setting a derivative constant
-int Kp = 20;//setting a proportional contstant
+int Kd = 0;//setting a derivative constant
+int Kp = 1;//setting a proportional contstant
 
 
 void setup() {
@@ -38,44 +38,13 @@ void loop() {
   int top2 = analogRead(BR);
   int top3 = analogRead(TL);
   int top4 = analogRead(BL);
-  int avgR = (top1 + top2)/2;
-  int avgL = (top3 + top4)/2;
+  int avgR = (top1 + top3)/2;
+  int avgL = (top2 + top4)/2;
   
   Serial.println(avgR);
   Serial.println(avgL);
   
-  
-  //if-else statements to change th e servo position
-  if (avgR > avgL)
-  {
-  	avg = avgR;
-    //proportional term
-  	error = 997 - avg;
-  	//derivative term
-  	derivative = error - lastError;
-    //setting the servo to move accordingly
-  	servoVal = initialStage - (error * Kp + derivative * Kd); 
-    myservo.write(servoVal);  
-  }
-  
-  else if (avgL > avgR)
-  {
-  	avg = avgL;
-    //proportional term
-  	error = 997 - avg;
-  	//derivative term
-  	derivative = error - lastError;
-    //setting the servo to move accordingly
-  	servoVal = initialStage + (error * Kp + derivative * Kd); 
-    myservo.write(servoVal); 
-  }
-  
-  
-  lastError = error;
-  
-  
-
-  /*//using relational operators to compare the values
+  //using relational operators to compare the values
    if (avgR > avgL)
    {
     myservo.write(initialStage-20);
@@ -85,10 +54,7 @@ void loop() {
    {
     myservo.write(initialStage+20);
     delay(100);
-   }*/
+   }
 
-
-
-   delay (50);
 
 }
