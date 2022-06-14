@@ -10,20 +10,9 @@ int BL = A2;//bottom left
 Servo myservo;
 int servoPin = 11;//the analog servo pin
 int initialStage = 90;//initial value for the servo
-<<<<<<< HEAD
 int error = 10;//can change the error depending on your servo
 
 
-=======
-int avg;//average largest sun
-int servoVal;
-int error;
-int derivative;
-//PID Variables
-int lastError = 0; //setting the last error to 0
-int Kd = 0;//setting a derivative constant
-int Kp = 1;//setting a proportional contstant
->>>>>>> 08ab92d5cc26fdcb94656d2ea5aad01ddc1d1dd1
 
 
 void setup() {
@@ -49,7 +38,6 @@ void loop() {
   
   Serial.println(avgR);
   Serial.println(avgL);
-<<<<<<< HEAD
   //getting the absolute difference between the top and bottom values
   int diff1 = abs(avgR-avgL);
   int diff2 = abs(avgL-avgR);
@@ -70,20 +58,3 @@ void loop() {
   myservo.write(initialStage);
   delay(100);
 }
-=======
-  
-  //using relational operators to compare the values
-   if (avgR > avgL)
-   {
-    myservo.write(initialStage-20);
-    delay(100);
-   }
-   else if(avgL > avgR)
-   {
-    myservo.write(initialStage+20);
-    delay(100);
-   }
-
-
-}
->>>>>>> 08ab92d5cc26fdcb94656d2ea5aad01ddc1d1dd1
