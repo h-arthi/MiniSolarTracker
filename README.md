@@ -1,6 +1,6 @@
-# SolarTrackerProject
+# Mini Solar Tracker
 
-A tracker which tracks the direction of the sun throughout the day.
+A mini tracker which tracks the direction of the sun throughout the day using light dependent resistors.
 
 Built using:
   - Arduino Uno
