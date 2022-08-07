@@ -1,10 +1,8 @@
 #include<Servo.h>
 
 //intialize the ldr pins
-int TR = A0;//top right ldr
-int BR = A3;//bottom right ldr
-int TL = A1;//top left ldr
-int BL = A2;//bottom left
+int TR = A0;//top 
+int BL = A2;//bottom 
 
 //initialize the servo
 Servo myservo;
@@ -18,8 +16,6 @@ int error = 10;//can change the error depending on your servo
 void setup() {
   myservo.attach(servoPin);//setting the servo to this pin number
   pinMode(TR, INPUT);
-  pinMode(BR, INPUT);
-  pinMode(TL, INPUT);
   pinMode(BL, INPUT);
   myservo.write(initialStage);//setting the servo to move 90 degree
   Serial.begin(9600);
@@ -30,27 +26,22 @@ void loop() {
 
   //initializing variables to hold the vals of the ldr
   int top1 = analogRead(TR);
-  int top2 = analogRead(BR);
-  int top3 = analogRead(TL);
-  int top4 = analogRead(BL);
-  int avgR = (top1 + top3)/2;
-  int avgL = (top2 + top4)/2;
+  int top2 = analogRead(BL);
   
-  Serial.println(avgR);
-  Serial.println(avgL);
+  Serial.println(top1);
+  Serial.println(top2);
   //getting the absolute difference between the top and bottom values
-  int diff1 = abs(avgR-avgL);
-  int diff2 = abs(avgL-avgR);
+  int diff1 = abs(top1-top2);
  
-  if ((diff1 <= error)||(diff2 <= error))
+  if (diff1 <= error)
   {
     initialStage = initialStage;
   }
-  else if (avgR > avgL)
+  else if (top1 > top2)
   {
     initialStage = ++initialStage;
   }
-  else if (avgL > avgR)
+  else if (top2 > top1)
   {
     initialStage = --initialStage;
   }
